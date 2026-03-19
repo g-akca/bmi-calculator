@@ -1,7 +1,17 @@
+import HeroHeading from "./HeroHeading";
+import HeroCalculator from "./HeroCalculator";
+
 function HeroSection() {
   return (
-    <>
-    </>
+    <section className="relative px-6 py-8">
+      <div className="absolute top-0 left-0 bg-linear-[to_right,#FFFFFF_0%,#D6E6FE_100%] h-160 w-full rounded-b-[35px] -z-10" />
+
+      <div className="flex flex-col items-center gap-8">
+        <HeroHeading />
+
+        <HeroCalculator />
+      </div>
+    </section>
   )
 }
 

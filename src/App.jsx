@@ -5,7 +5,7 @@ import LimitsSection from "./components/LimitsSection";
 
 function App() {
   return (
-    <main className="text-base leading-base">
+    <main className="text-base leading-base text-grey-500">
       <HeroSection />
       <ResultsSection />
       <TipsSection />

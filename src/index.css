@@ -18,7 +18,5 @@
 }
 
 :root {
-  --gradient-1: linear-gradient(to right, #D6FCFE 0%, #D6E6FE 100%);
-
   font-family: "Inter", sans-serif;
 }
