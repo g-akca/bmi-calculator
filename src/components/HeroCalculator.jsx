@@ -1,6 +1,6 @@
 function HeroCalculator() {
   return (
-    <form className="bg-white w-full p-6 rounded-2xl flex flex-col gap-6">
+    <form className="bg-white w-full p-6 rounded-2xl flex flex-col gap-6 shadow-[16px_32px_56px_rgba(143,174,207,0.25)]">
       <h2 className="text-blue-900 font-semibold text-[24px] leading-7.25 tracking-[-4%]">Enter your details below</h2>
 
       <fieldset className="grid grid-cols-2 gap-6">
