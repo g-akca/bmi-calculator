@@ -64,6 +64,15 @@ function HeroCalculator() {
     };
   }
 
+  function kgToStLbs(kg) {
+    const totalLbs = kg * 2.20462;
+
+    const stone = Math.floor(totalLbs / 14);
+    const pounds = Math.round(totalLbs % 14);
+
+    return `${stone}st ${pounds}lbs`;
+  }
+
   const bmi = calculateBMI();
   const category = getBMICategory(bmi);
   const range = getIdealWeightRange();
@@ -150,26 +159,29 @@ function HeroCalculator() {
         </div>
       </div>
 
-      <section className="p-8 bg-blue-500 rounded-2xl text-white flex flex-col gap-6 tablet:gap-4 tablet:rounded-l-2xl tablet:rounded-r-[80px]">
-        {!bmi || !range || !category ? (
-          <>
-            <h3 className="text-[24px] leading-7.25 font-semibold tracking-[-4%]">Welcome!</h3>
-            <p className="text-[14px] leading-base">Enter your height and weight and you’ll see your BMI result here</p>
-          </>
-        ) : (
-          <>
-            <div className="flex flex-col gap-2">
-              <p className="font-semibold">Your BMI is...</p>
-              <p className="font-semibold text-[48px] leading-[110%] tracking-[-4%]">{bmi}</p>
-            </div>
+      {!bmi || !range || !category ? (
+        <section className="p-8 bg-blue-500 rounded-2xl text-white flex flex-col gap-6 tablet:gap-4 tablet:rounded-l-2xl tablet:rounded-r-[80px]">
+          <h3 className="text-[24px] leading-7.25 font-semibold tracking-[-4%]">Welcome!</h3>
+          <p className="text-[14px] leading-base">Enter your height and weight and you’ll see your BMI result here</p>
+        </section>
+      ) : (
+        <section className="p-8 bg-blue-500 rounded-2xl text-white flex flex-col gap-6 tablet:grid tablet:grid-cols-2 tablet:items-center tablet:rounded-l-2xl tablet:rounded-r-[80px]">
+          <div className="flex flex-col gap-2">
+            <p className="font-semibold">Your BMI is...</p>
+            <p className="font-semibold text-[48px] leading-[110%] tracking-[-4%]">{bmi}</p>
+          </div>
 
-            <p className="text-[14px] leading-base">
-              Your BMI suggests you’re {category}. Your ideal weight is between{" "}
-              <strong>{range.min}kgs - {range.max}kgs</strong>.
-            </p>
-          </>
-        )}
-      </section>
+          <p className="text-[14px] leading-base">
+            Your BMI suggests you’re {category}. Your ideal weight is between{" "}
+            <strong>
+              {unit === "metric"
+                ? `${range.min}kgs - ${range.max}kgs`
+                : `${kgToStLbs(range.min)} - ${kgToStLbs(range.max)}`
+              }
+            </strong>.
+          </p>
+        </section>
+      )}
     </form>
   )
 }
