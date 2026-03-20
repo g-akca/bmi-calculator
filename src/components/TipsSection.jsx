@@ -27,7 +27,7 @@ function TipsSection() {
   ]
 
   return (
-    <section className="px-6 py-12 flex flex-col gap-10">
+    <section className="px-6 py-12 flex flex-col items-center gap-10">
       {tips.map(item => (
         <TipsItem key={item.id} tip={item} />
       ))}
