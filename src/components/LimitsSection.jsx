@@ -41,7 +41,7 @@ function LimitsSection() {
   ]
 
   return (
-    <section className="flex flex-col gap-14 px-5">
+    <section className="flex flex-col gap-14 px-5 tablet:px-9.75">
       <div className="flex flex-col items-center gap-8 text-center">
         <h2 className="text-[32px] leading-[110%] font-semibold tracking-[-4%] text-blue-900">Limitations of BMI</h2>
         <p>
@@ -51,9 +51,9 @@ function LimitsSection() {
         </p>
       </div>
 
-      <div className="flex flex-col gap-4 items-center">
+      <div className="flex flex-col gap-4 items-center tablet:flex-row tablet:justify-center tablet:flex-wrap tablet:items-stretch">
         {limits.map(item => (
-          <LimitsItem key={item.id} limit={item} />
+          <LimitsItem key={item.id} limit={item} className="tablet:w-83.75" />
         ))}
       </div>
     </section>

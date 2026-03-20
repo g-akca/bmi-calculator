@@ -27,7 +27,7 @@ function TipsSection() {
   ]
 
   return (
-    <section className="px-6 py-12 flex flex-col items-center gap-10 bg-linear-[to_right,#FFFFFF_0%,rgba(214,230,254,0.3)_100%]">
+    <section className="px-6 py-12 flex flex-col items-center gap-10 bg-linear-[to_right,#FFFFFF_0%,rgba(214,230,254,0.3)_100%] tablet:px-9.75 tablet:py-12.5">
       {tips.map(item => (
         <TipsItem key={item.id} tip={item} />
       ))}

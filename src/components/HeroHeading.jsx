@@ -2,7 +2,7 @@ import logoImg from "/images/logo.svg";
 
 function HeroHeading() {
   return (
-    <div className="flex flex-col items-center gap-8">
+    <div className="flex flex-col items-center gap-8 tablet:gap-10">
       <img src={logoImg} alt="Logo image" className="w-10 aspect-square" />
 
       <div className="text-center">

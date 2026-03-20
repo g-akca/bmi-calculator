@@ -1,6 +1,6 @@
 function HeroCalculator() {
   return (
-    <form className="bg-white w-full p-6 rounded-2xl flex flex-col gap-6 shadow-[16px_32px_56px_rgba(143,174,207,0.25)]">
+    <form className="bg-white w-full p-6 rounded-2xl flex flex-col gap-6 shadow-[16px_32px_56px_rgba(143,174,207,0.25)] tablet:p-8 tablet:gap-8">
       <h2 className="text-blue-900 font-semibold text-[24px] leading-7.25 tracking-[-4%]">Enter your details below</h2>
 
       <fieldset className="grid grid-cols-2 gap-6">
@@ -29,7 +29,7 @@ function HeroCalculator() {
         </label>
       </fieldset>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 tablet:grid tablet:grid-cols-2 tablet:gap-6">
         <div className="flex flex-col gap-2">
           <label htmlFor="height" className="text-[14px] leading-base">Height</label>
           <div className="flex gap-6 p-6 border border-grey-500 hover:border-blue-500 rounded-xl text-[24px] leading-7.25 font-semibold tracking-[-4%]">
@@ -47,7 +47,7 @@ function HeroCalculator() {
         </div>
       </div>
 
-      <section className="p-8 bg-blue-500 rounded-2xl text-white flex flex-col gap-6">
+      <section className="p-8 bg-blue-500 rounded-2xl text-white flex flex-col gap-6 tablet:gap-4 tablet:rounded-l-2xl tablet:rounded-r-[80px]">
         <h3 className="text-[24px] leading-7.25 font-semibold tracking-[-4%]">Welcome!</h3>
         <p className="text-[14px] leading-base">Enter your height and weight and you’ll see your BMI result here</p>
       </section>

@@ -2,10 +2,10 @@ import manImg from "/images/image-man-eating.webp";
 
 function ResultsSection() {
   return (
-    <section className="flex flex-col gap-12">
-      <img src={manImg} alt="Image of a man eating" />
+    <section className="flex flex-col items-center gap-12 tablet:flex-row tablet:gap-18 tablet:-translate-x-24 tablet:w-210">
+      <img src={manImg} alt="Image of a man eating" className="tablet:w-108.75" />
 
-      <div className="px-6 flex flex-col gap-8">
+      <div className="px-6 flex flex-col gap-8 tablet:px-0">
         <h2 className="text-[32px] leading-[110%] font-semibold tracking-[-4%] text-blue-900">What your BMI result means</h2>
         <p>
           A BMI range of 18.5 to 24.9 is considered a 'healthy weight.' Maintaining a healthy 
