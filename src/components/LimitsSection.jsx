@@ -57,19 +57,19 @@ function LimitsSection() {
       <div className="flex flex-col gap-4 items-center tablet:flex-row tablet:justify-center tablet:flex-wrap tablet:items-stretch desktop:contents">
         {limits.map((item, index) => {
           const positions = [
-            // Gender (top, right-ish)
+            // Gender
             "desktop:col-start-8 desktop:row-start-1",
 
-            // Age (left middle)
+            // Age
             "desktop:col-start-5 desktop:row-start-2",
 
-            // Muscle (right middle)
+            // Muscle
             "desktop:col-start-9 desktop:row-start-2",
 
-            // Pregnancy (bottom left-ish)
+            // Pregnancy
             "desktop:col-start-3 desktop:row-start-3",
 
-            // Race (bottom right-ish)
+            // Race
             "desktop:col-start-7 desktop:row-start-3",
           ];
 
