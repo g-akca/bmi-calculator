@@ -1,21 +1,35 @@
 import { useState } from "react";
 
 function HeroCalculator() {
-  const [height, setHeight] = useState(0);
-  const [weight, setWeight] = useState(0);
+  const [height, setHeight] = useState();
+  const [weight, setWeight] = useState();
+
+  const [heightFt, setHeightFt] = useState();
+  const [heightIn, setHeightIn] = useState();
+  const [weightSt, setWeightSt] = useState();
+  const [weightLbs, setWeightLbs] = useState();
+
   const [unit, setUnit] = useState("metric");
 
   function calculateBMI() {
-    if (!height || !weight) return null;
+    const heightInMeters = getHeightInMeters();
+    if (!heightInMeters) return null;
+
+    let weightInKg;
 
     if (unit === "metric") {
-      const heightInMeters = height / 100;
-      return (weight / (heightInMeters * heightInMeters)).toFixed(1);
+      if (!weight || weight <= 0) return null;
+      weightInKg = weight;
     }
     else {
-      return ((weight / (height * height)) * 703).toFixed(1);
+      const totalLbs = (weightSt || 0) * 14 + (weightLbs || 0);
+      if (totalLbs === 0) return null;
+
+      weightInKg = totalLbs * 0.453592;
     }
-  };
+
+    return (weightInKg / (heightInMeters ** 2)).toFixed(1);
+  }
 
   function getBMICategory(bmi) {
     if (!bmi) return null;
@@ -26,24 +40,29 @@ function HeroCalculator() {
     return "obese";
   };
 
-  function getIdealWeightRange() {
-    if (!height) return null;
-
+  function getHeightInMeters() {
     if (unit === "metric") {
-      const h = height / 100;
-
-      return {
-        min: (18.5 * h * h).toFixed(1),
-        max: (24.9 * h * h).toFixed(1),
-      };
+      if (!height || height <= 0) return null;
+      return height / 100;
     }
     else {
-      return {
-        min: ((18.5 * height * height) / 703).toFixed(1),
-        max: ((24.9 * height * height) / 703).toFixed(1),
-      };
+      const totalInches = (heightFt || 0) * 12 + (heightIn || 0);
+      if (totalInches === 0) return null;
+
+      return totalInches * 0.0254;
     }
-  };
+  }
+
+  function getIdealWeightRange() {
+    const heightInMeters = getHeightInMeters();
+
+    if (!heightInMeters) return null;
+
+    return {
+      min: (18.5 * heightInMeters ** 2).toFixed(1),
+      max: (24.9 * heightInMeters ** 2).toFixed(1),
+    };
+  }
 
   const bmi = calculateBMI();
   const category = getBMICategory(bmi);
@@ -83,21 +102,51 @@ function HeroCalculator() {
         </label>
       </fieldset>
 
-      <div className="flex flex-col gap-4 tablet:grid tablet:grid-cols-2 tablet:gap-6">
+      <div className={`flex flex-col gap-4 tablet:gap-6 ${unit === "metric" ? "tablet:grid tablet:grid-cols-2" : ""}`}>
         <div className="flex flex-col gap-2">
           <label htmlFor="height" className="text-[14px] leading-base">Height</label>
-          <div className="flex gap-6 p-6 border border-grey-500 hover:border-blue-500 rounded-xl text-[24px] leading-7.25 font-semibold tracking-[-4%] desktop:py-4">
-            <input type="number" id="height" placeholder="0" min="0" value={height} onChange={(e) => setHeight(e.target.value)} className="grow min-w-0 text-blue-900 placeholder:text-grey-500 focus:outline-none" />
-            <span className="text-blue-500">cm</span>
-          </div>
+
+          {unit === "metric" ? (
+            <div className="flex gap-6 p-6 border border-grey-500 hover:border-blue-500 rounded-xl text-[24px] leading-7.25 font-semibold tracking-[-4%] desktop:py-4">
+              <input type="number" id="height" placeholder="0" min="0" onChange={(e) => setHeight(Number(e.target.value))} className="w-full text-blue-900 placeholder:text-grey-500 focus:outline-none" />
+              <span className="text-blue-500">cm</span>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-4 tablet:gap-6">
+              <div className="flex gap-6 p-6 border border-grey-500 hover:border-blue-500 rounded-xl text-[24px] leading-7.25 font-semibold tracking-[-4%] desktop:py-4">
+                <input type="number" id="height-ft" placeholder="0" min="0" onChange={(e) => setHeightFt(Number(e.target.value))} className="w-full text-blue-900 placeholder:text-grey-500 focus:outline-none" />
+                <span className="text-blue-500">ft</span>
+              </div>
+
+              <div className="flex gap-6 p-6 border border-grey-500 hover:border-blue-500 rounded-xl text-[24px] leading-7.25 font-semibold tracking-[-4%] desktop:py-4">
+                <input type="number" id="height-in" placeholder="0" min="0" onChange={(e) => setHeightIn(Number(e.target.value))} className="w-full text-blue-900 placeholder:text-grey-500 focus:outline-none" />
+                <span className="text-blue-500">in</span>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="flex flex-col gap-2">
           <label htmlFor="weight" className="text-[14px] leading-base">Weight</label>
-          <div className="flex gap-6 p-6 border border-grey-500 hover:border-blue-500 rounded-xl text-[24px] leading-7.25 font-semibold tracking-[-4%] desktop:py-4">
-            <input type="number" id="weight" placeholder="0" min="0" value={weight} onChange={(e) => setWeight(e.target.value)} className="grow min-w-0 text-blue-900 placeholder:text-grey-500 focus:outline-none" />
-            <span className="text-blue-500">kg</span>
-          </div>
+
+          {unit === "metric" ? (
+            <div className="flex gap-6 p-6 border border-grey-500 hover:border-blue-500 rounded-xl text-[24px] leading-7.25 font-semibold tracking-[-4%] desktop:py-4">
+              <input type="number" id="weight" placeholder="0" min="0" onChange={(e) => setWeight(Number(e.target.value))} className="w-full text-blue-900 placeholder:text-grey-500 focus:outline-none" />
+              <span className="text-blue-500">kg</span>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-4 tablet:gap-6">
+              <div className="flex gap-6 p-6 border border-grey-500 hover:border-blue-500 rounded-xl text-[24px] leading-7.25 font-semibold tracking-[-4%] desktop:py-4">
+                <input type="number" id="weight-st" placeholder="0" min="0" onChange={(e) => setWeightSt(Number(e.target.value))} className="w-full text-blue-900 placeholder:text-grey-500 focus:outline-none" />
+                <span className="text-blue-500">st</span>
+              </div>
+
+              <div className="flex gap-6 p-6 border border-grey-500 hover:border-blue-500 rounded-xl text-[24px] leading-7.25 font-semibold tracking-[-4%] desktop:py-4">
+                <input type="number" id="weight-lbs" placeholder="0" min="0" onChange={(e) => setWeightLbs(Number(e.target.value))} className="w-full text-blue-900 placeholder:text-grey-500 focus:outline-none" />
+                <span className="text-blue-500">lbs</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
