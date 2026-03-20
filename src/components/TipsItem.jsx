@@ -1,6 +1,6 @@
 function TipsItem({ tip }) {
   return (
-    <section className="flex flex-col gap-8 tablet:flex-row tablet:gap-10 tablet:items-center">
+    <section className="flex flex-col gap-8 tablet:flex-row tablet:gap-10 tablet:items-center desktop:flex-col desktop:items-start desktop:gap-12">
       <img src={tip.icon} alt={tip.name} className="w-16 aspect-square" />
 
       <div className="flex flex-col gap-6">

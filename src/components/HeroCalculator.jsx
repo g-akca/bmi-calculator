@@ -32,7 +32,7 @@ function HeroCalculator() {
       <div className="flex flex-col gap-4 tablet:grid tablet:grid-cols-2 tablet:gap-6">
         <div className="flex flex-col gap-2">
           <label htmlFor="height" className="text-[14px] leading-base">Height</label>
-          <div className="flex gap-6 p-6 border border-grey-500 hover:border-blue-500 rounded-xl text-[24px] leading-7.25 font-semibold tracking-[-4%]">
+          <div className="flex gap-6 p-6 border border-grey-500 hover:border-blue-500 rounded-xl text-[24px] leading-7.25 font-semibold tracking-[-4%] desktop:py-4">
             <input type="number" id="height" placeholder="0" min="0" className="grow min-w-0 text-blue-900 placeholder:text-grey-500 focus:outline-none" />
             <span className="text-blue-500">cm</span>
           </div>
@@ -40,7 +40,7 @@ function HeroCalculator() {
 
         <div className="flex flex-col gap-2">
           <label htmlFor="weight" className="text-[14px] leading-base">Weight</label>
-          <div className="flex gap-6 p-6 border border-grey-500 hover:border-blue-500 rounded-xl text-[24px] leading-7.25 font-semibold tracking-[-4%]">
+          <div className="flex gap-6 p-6 border border-grey-500 hover:border-blue-500 rounded-xl text-[24px] leading-7.25 font-semibold tracking-[-4%] desktop:py-4">
             <input type="number" id="weight" placeholder="0" min="0" className="grow min-w-0 text-blue-900 placeholder:text-grey-500 focus:outline-none" />
             <span className="text-blue-500">kg</span>
           </div>
