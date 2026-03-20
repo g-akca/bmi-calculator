@@ -6,7 +6,7 @@ function HeroCalculator() {
       <fieldset className="grid grid-cols-2 gap-6">
         <label className="flex gap-4 items-center">
           <input 
-            type="radio" name="unit" value="metric" required checked 
+            type="radio" name="unit" value="metric" required defaultChecked 
             className="
               appearance-none w-7.75 h-7.75 rounded-full border border-grey-500 flex items-center justify-center
               checked:bg-blue-100 checked:border-0 checked:before:content[''] checked:before:w-3.75 checked:before:h-3.75 
@@ -18,7 +18,7 @@ function HeroCalculator() {
 
         <label className="flex gap-4 items-center">
           <input 
-            type="radio" name="unit" value="imperial" required checked 
+            type="radio" name="unit" value="imperial" required
             className="
               appearance-none w-7.75 h-7.75 rounded-full border border-grey-500 flex items-center justify-center
               checked:bg-blue-100 checked:border-0 checked:before:content[''] checked:before:w-3.75 checked:before:h-3.75 
